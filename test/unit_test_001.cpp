@@ -44,11 +44,11 @@ unittest(test_constructor)
 {
   OneWire oneWire(ONE_WIRE_BUS);
   DS18B20_INT sensor(&oneWire);
-  
+
   sensor.requestTemperatures();
-  delay(1000);
+  delay(100);
   assertFalse(sensor.isConversionComplete());
-  
+
   assertEqual(0, sensor.getTempC());
 }
 

@@ -68,7 +68,9 @@ void DS18B20_INT::requestTemperatures(void)
 bool DS18B20_INT::isConversionComplete(void)
 {
   return (_wire->read_bit() == 1);
-}	
+}
+
+
 int16_t DS18B20_INT::getTempC(void)
 {
   _wire->reset();
