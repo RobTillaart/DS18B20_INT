@@ -13,7 +13,7 @@ unittest:
   # These dependent libraries will be installed
   libraries:
     - "OneWire"
-    - "avr-libc"
+    - "libm"
     
     
     
