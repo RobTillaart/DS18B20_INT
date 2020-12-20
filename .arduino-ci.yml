@@ -5,3 +5,6 @@ compile:
     - leonardo
     - due
     - zero
+  # Declaring Dependent Arduino Libraries (to be installed via the Arduino Library Manager)
+  libraries:
+    - "OneWire"
