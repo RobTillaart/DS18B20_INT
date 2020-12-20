@@ -13,4 +13,7 @@ unittest:
   # These dependent libraries will be installed
   libraries:
     - "OneWire"
-    - "util/crc16"
+    - "crc16"
+    
+    
+    
