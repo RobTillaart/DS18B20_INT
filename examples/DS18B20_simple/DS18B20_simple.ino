@@ -22,8 +22,8 @@ void setup(void)
 {
   Serial.begin(115200);
   Serial.println(__FILE__);
-  Serial.print("DS18B20 Library version: ");
-  Serial.println(DS18B20_LIB_VERSION);
+  Serial.print("DS18B20_INT_LIB_VERSION: ");
+  Serial.println(DS18B20_INT_LIB_VERSION);
 
   sensor.begin();
 }

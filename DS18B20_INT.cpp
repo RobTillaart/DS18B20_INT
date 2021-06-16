@@ -22,6 +22,7 @@
 #define READSCRATCH     0xBE
 #define WRITESCRATCH    0x4E
 
+
 // Device resolution
 #define TEMP_9_BIT  0x1F //  9 bit
 
