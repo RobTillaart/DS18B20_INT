@@ -34,7 +34,7 @@ DS18B20_INT::DS18B20_INT(OneWire* _oneWire)
 }
 
 
-bool DS18B20::begin(uint8_t retries)
+bool DS18B20_INT::begin(uint8_t retries)
 {
   _addresFound = false;
   for (uint8_t rtr = retries; (rtr > 0) && (_addresFound == false); rtr--)
