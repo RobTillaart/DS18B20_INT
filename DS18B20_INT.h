@@ -21,7 +21,7 @@
 //
 
 
-#define DS18B20_INT_LIB_VERSION       (F("0.1.7"))
+#define DS18B20_INT_LIB_VERSION       (F("0.1.8"))
 
 #include "Arduino.h"
 #include "OneWire.h"

@@ -46,9 +46,10 @@ or  -127 = DEVICE_DISCONNECTED
 ### CentiC part
 
 The following functions are experimental since 0.1.8.
-They allow to use a higher resolution while not using floats. This keeps the library small.
+They allow to use a higher resolution while not using floats. 
+This keeps the library small.
 
-- **void setResolution(uint8_t bits = 9)** sets the internal resolution to 9,10,11 or 12 bits. 
+- **void setResolution(uint8_t bits = 9)** sets the internal resolution to 9, 10, 11 or 12 bits. 
 Other numbers will be mapped on 9. 
 This will affect the conversion time for a measurement.
 Internally it will call **begin()** to set the new resolution if needed.
@@ -56,7 +57,6 @@ Internally it will call **begin()** to set the new resolution if needed.
 Convenience function.
 - **getTempCentiC(void)** returns the measured temperature times 100. -5500..12500
 So 10.62°C will be returned as 1062.
-
 
 **Warning** The DEVICE_DISCONNECTED is not tested for, but is commented in the code. 
 Use at own risk.

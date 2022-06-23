@@ -10,8 +10,10 @@ getTempC	KEYWORD2
 requestTemperatures	KEYWORD2
 isConversionComplete	KEYWORD2
 getAddress	KEYWORD2
-getTempCentiC	KEYWORD2
 
+setResolution	KEYWORD2
+getResolution	KEYWORD2
+getTempCentiC	KEYWORD2
 
 
 # Constants (LITERAL1)
