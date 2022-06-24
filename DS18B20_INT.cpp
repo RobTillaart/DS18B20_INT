@@ -1,7 +1,7 @@
 //
 //    FILE: DS18B20_INT.cpp
 //  AUTHOR: Rob.Tillaart@gmail.com
-// VERSION: 0.1.8
+// VERSION: 0.2.0
 //    DATE: 2017-07-25
 // PUPROSE: library for DS18B20 temperature sensor - integer only.
 //     URL: https://github.com/RobTillaart/DS18B20_INT
@@ -16,7 +16,8 @@
 //  0.1.5   2021-06-16  add retries parameter to begin()
 //  0.1.6   2021-10-03  add dependency + fix build-CI
 //  0.1.7   2021-12-17  update library.json, license, minor edits
-//  0.1.8   2022-06-23  fix #10 getTempCentiC() (thanks negroKiordi)
+//  0.2.0   2022-06-23  fix #10 getTempCentiC() (thanks negroKiordi)
+//                      fix reading sensor
 
 
 #include "DS18B20_INT.h"
@@ -158,8 +159,8 @@ int16_t DS18B20_INT::_readRaw(void)
   _oneWire->reset();
   _oneWire->select(_deviceAddress);
   _oneWire->write(READSCRATCH);
-  int16_t rawTemperature = ((int16_t)_oneWire->read()) << 8;
-  rawTemperature |= _oneWire->read();
+  int16_t rawTemperature = ((int16_t)_oneWire->read());
+  rawTemperature |= _oneWire->read() << 8;
   _oneWire->reset();
   return rawTemperature;
 }

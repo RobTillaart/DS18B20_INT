@@ -45,7 +45,7 @@ or  -127 = DEVICE_DISCONNECTED
 
 ### CentiC part
 
-The following functions are experimental since 0.1.8.
+The following functions are experimental since 0.2.0
 They allow to use a higher resolution while not using floats. 
 This keeps the library small.
 
