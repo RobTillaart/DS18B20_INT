@@ -2,6 +2,7 @@
 //    FILE: DS18B20_simple.ino
 //  AUTHOR: Rob Tillaart
 // PURPOSE: equivalent of DallasTemperature library Simple
+//     URL: https://github.com/RobTillaart/DS18B20_INT
 
 
 #include <OneWire.h>

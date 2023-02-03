@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - update GitHub actions
 - update license 2023
 - add example DS18B20_performance.ino (start not complete)
+- add example DS18B20_two_sensor.ino
+- add example oneWireSearch.ino
 - update readme.md
 
 
