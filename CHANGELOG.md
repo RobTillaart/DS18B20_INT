@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [0.2.2] - 2023-02-03
+- improve disconnect detection
 - change signature **bool setResolution()** to see if device is still available.
 - update GitHub actions
 - update license 2023
