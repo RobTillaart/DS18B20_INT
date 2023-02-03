@@ -37,6 +37,7 @@ class DS18B20_INT
 public:
   explicit  DS18B20_INT(OneWire * ow);
   bool      begin(uint8_t retries = 3);
+
   void      requestTemperatures(void);
   int16_t   getTempC(void);
   bool      isConversionComplete(void);
@@ -44,6 +45,7 @@ public:
 
   bool      setResolution(uint8_t bits = 9);
   uint8_t   getResolution();
+
   int16_t   getTempCentiC(void);
 
 
