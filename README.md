@@ -29,6 +29,7 @@ added a number of Arduino examples to help you get started.
 
 This library is related to 
 - https://github.com/RobTillaart/DS18B20_INT
+- https://github.com/RobTillaart/DS18B20_RT
 - https://github.com/milesburton/Arduino-Temperature-Control-Library
 
 ## Interface
