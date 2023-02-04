@@ -37,6 +37,7 @@ class DS18B20_INT
 public:
   explicit  DS18B20_INT(OneWire * ow);
   bool      begin(uint8_t retries = 3);
+  bool      isConnected(uint8_t retries = 3);
 
   void      requestTemperatures(void);
   int16_t   getTempC(void);
@@ -44,7 +45,7 @@ public:
   bool      getAddress(uint8_t* buf);
 
   bool      setResolution(uint8_t bits = 9);
-  uint8_t   getResolution();
+  uint8_t   getResolution();  //  returns cached value
 
   int16_t   getTempCentiC(void);
 
@@ -56,6 +57,7 @@ private:
 
   uint8_t       _resolution;
   int16_t       _readRaw();
+  bool          _setResolution();
 };
 
 

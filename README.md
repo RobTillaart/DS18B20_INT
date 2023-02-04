@@ -46,7 +46,8 @@ the asynchronous reading of the temperature by means of three core functions:
 - **DS18B20_INT(OneWire \*)** constructor needs a reference to OneWire object.
 - **bool begin(uint8_t retries = 3)** resets oneWire and set resolution default to 9 bit.  
 Returns true if address / device is found and all is OK. 
-There will be a number of retries to connect, default 3. 
+There will be a number of retries to connect, default 3.
+- **bool isConnected()** Returns true if address / device is found.
 - **void requestTemperatures()** trigger temperature conversion.
 - **bool isConversionComplete()** check if conversion is complete.
 - **int16_t getTempC()** returns temperature in whole degrees only. -55..125  
@@ -124,11 +125,11 @@ Measured with DS18B20_performance.ino
 
 |  function              |  not connected  |  connected  |
 |:-----------------------|:---------------:|:-----------:|
-|  begin                 |           1732  |      -      |
+|  begin                 |            920  |      -      |
 |  getAddress            |              4  |      -      |
-|  requestTemperatures   |           1268  |      -      |
+|  requestTemperatures   |           1276  |      -      |
 |  isConversionComplete  |             72  |      -      |
-|  getTempC              |           7972  |      -      |
+|  getTempC              |            912  |      -      |
 
 
 ## Credits

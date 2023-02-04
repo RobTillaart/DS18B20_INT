@@ -34,6 +34,17 @@ DS18B20_INT::DS18B20_INT(OneWire* ow)
 
 bool DS18B20_INT::begin(uint8_t retries)
 {
+  isConnected(retries);
+  if (_addressFound)
+  {
+    _setResolution();
+  }
+  return _addressFound;
+}
+
+
+bool DS18B20_INT::isConnected(uint8_t retries)
+{
   _addressFound = false;
   for (uint8_t rtr = retries; (rtr > 0) && (_addressFound == false); rtr--)
   {
@@ -43,19 +54,6 @@ bool DS18B20_INT::begin(uint8_t retries)
     _oneWire->search(_deviceAddress);
     _addressFound = _deviceAddress[0] != 0x00 &&
                 _oneWire->crc8(_deviceAddress, 7) == _deviceAddress[7];
-  }
-
-  if (_addressFound)
-  {
-    _oneWire->reset();
-    _oneWire->select(_deviceAddress);
-    _oneWire->write(WRITESCRATCH);
-    //  two dummy values for LOW & HIGH ALARM
-    _oneWire->write(0);
-    _oneWire->write(100);
-    //  lowest as default as we do only integer math.
-    _oneWire->write(_resolution);     
-    _oneWire->reset();
   }
   return _addressFound;
 }
@@ -77,16 +75,16 @@ bool DS18B20_INT::isConversionComplete(void)
 
 int16_t DS18B20_INT::getTempC(void)
 {
-  int16_t rawTemperature = _readRaw();
-  if (rawTemperature == 0)
+  if (isConnected(3) == false)
   {
-    if (begin() == false) 
-    {
-      return DEVICE_DISCONNECTED;
-    }
+    return DEVICE_DISCONNECTED;
   }
+  int16_t rawTemperature = _readRaw();
   rawTemperature >>= 4;
-  if (rawTemperature < -55) return DEVICE_DISCONNECTED;
+  if (rawTemperature < -55)
+  {
+    return DEVICE_DISCONNECTED;
+  }
   return rawTemperature;
 }
 
@@ -132,14 +130,11 @@ uint8_t DS18B20_INT::getResolution()
 
 int16_t DS18B20_INT::getTempCentiC(void)
 {
-  int16_t rawTemperature = _readRaw();
-  if (rawTemperature == 0)
+  if (isConnected(3) == false)
   {
-    if (begin() == false) 
-    {
-      return DEVICE_DISCONNECTED * 100;
-    }
+    return DEVICE_DISCONNECTED;
   }
+  int16_t rawTemperature = _readRaw();
   //  rawTemperature = rawTemperature * 100 / 16;
   rawTemperature *= 25;
   rawTemperature >>= 2;
@@ -165,6 +160,24 @@ int16_t DS18B20_INT::_readRaw(void)
   rawTemperature |= _oneWire->read() << 8;
   _oneWire->reset();
   return rawTemperature;
+}
+
+
+bool DS18B20_INT::_setResolution()
+{
+  if (_addressFound)
+  {
+    _oneWire->reset();
+    _oneWire->select(_deviceAddress);
+    _oneWire->write(WRITESCRATCH);
+    //  two dummy values for LOW & HIGH ALARM
+    _oneWire->write(0);
+    _oneWire->write(100);
+    //  lowest as default as we do only integer math.
+    _oneWire->write(_resolution);
+    _oneWire->reset();
+  }
+  return _addressFound;
 }
 
 
