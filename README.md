@@ -32,11 +32,13 @@ This library is related to
 - https://github.com/RobTillaart/DS18B20_RT
 - https://github.com/milesburton/Arduino-Temperature-Control-Library
 
+
 ## Interface
 
 ```cpp
 #include "DS18B20_INT.h"
 ```
+
 
 #### Core
 
@@ -58,9 +60,9 @@ or  -127 = DEVICE_DISCONNECTED
 
 #### CentiC part
 
-The following functions are experimental since 0.2.0
+The following functions are experimental since 0.2.0 and not tested a lot by me.
 They allow to use a higher resolution while not using floats. 
-This keeps the library small.
+Goal is to keep the footprint of the library small.
 
 - **bool setResolution(uint8_t bits = 9)** sets the internal resolution to 9, 10, 11 or 12 bits. 
 Other numbers will be mapped on 9. 
@@ -72,9 +74,6 @@ Convenience function.
 - **getTempCentiC(void)** returns the measured temperature times 100. -5500..12500
 So 10.62°C will be returned as 1062.
 Note one might need to set the resolution.
-
-**Warning** The DEVICE_DISCONNECTED is not tested for, but is commented in the code. 
-Use at own risk.
 
 
 ## Operation
@@ -95,6 +94,15 @@ This library supports only one DS18B20 per Arduino/ MCU pin.
 
 Connect a pull-up resistor 4.7 KOhm between pin3 and pin2. 
 When the wires are longer this resistor needs to be smaller.
+
+
+#### -127 and 85
+
+Two specific return values from reading the sensor:
+
+- minus 127 == DEVICE_DISCONNECTED
+- plus 85 is the power on default. 
+If you get this unexpected it may indicate a power problem
 
 
 #### Pull up resistor
@@ -144,21 +152,29 @@ and all people who contributed to that lib.
 #### Must
 
 - elaborate performance connected state.
+- document 85 and -127 better
+  - #define DEVICE_POWER_ON       85
+  - example reread?
 
 #### Should
 
-- add examples
-  - a multi sensor == multiple pins, no bus
+- better error handling
+  - DS18B20_ERR_DISCONNECT
+  - DS18B20_OK
+  - DS18B20_ERR_POWER_ON.
+  - DS18B20_ERR_TIMEOUT ?
 
 #### Could
 
 - add rounding for **getTempC()**.
   - now it truncates, so it can be 0.5°C off.
   - add "0.5" to raw and truncate improves only for 10 bits and higher.
+  - ==> in conflict with minimalistic goal?
 
 #### Wont
 
 - unit tests
-  - get it working
+  - get it working is too time consuming.
+
 
 

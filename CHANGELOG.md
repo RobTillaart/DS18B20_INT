@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [0.3.0] - 2023-03-05
+- fix #15 infinite loop
+- move sources to src folder to comply with PlatformIO dependency system. 
+- make oneWire dependency explicit in library.properties
+- update readme.md
+
+----
+
 ## [0.2.2] - 2023-02-03
 - improve disconnect detection
 - add **isConnected(retries)**
@@ -16,7 +24,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - add example DS18B20_two_sensor.ino
 - add example oneWireSearch.ino
 - update readme.md
-
 
 ## [0.2.1] - 2022-11-02
 - add changelog.md

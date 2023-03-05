@@ -1,7 +1,7 @@
 //
 //    FILE: DS18B20_INT.cpp
 //  AUTHOR: Rob.Tillaart@gmail.com
-// VERSION: 0.2.2
+// VERSION: 0.3.0
 //    DATE: 2017-07-25
 // PUPROSE: library for DS18B20 temperature sensor - integer only.
 //     URL: https://github.com/RobTillaart/DS18B20_INT
@@ -34,8 +34,7 @@ DS18B20_INT::DS18B20_INT(OneWire* ow)
 
 bool DS18B20_INT::begin(uint8_t retries)
 {
-  isConnected(retries);
-  if (_addressFound)
+  if (isConnected(retries))
   {
     _setResolution();
   }
@@ -104,14 +103,18 @@ bool DS18B20_INT::getAddress(uint8_t* buf)
 
 bool DS18B20_INT::setResolution(uint8_t bits)
 {
-  switch (bits)
+  if (isConnected())
   {
-    case 12: _resolution = TEMP_12_BIT;  break;
-    case 11: _resolution = TEMP_11_BIT;  break;
-    case 10: _resolution = TEMP_10_BIT;  break;
-    default: _resolution = TEMP_9_BIT;   break;
+    switch (bits)
+    {
+      case 12: _resolution = TEMP_12_BIT;  break;
+      case 11: _resolution = TEMP_11_BIT;  break;
+      case 10: _resolution = TEMP_10_BIT;  break;
+      default: _resolution = TEMP_9_BIT;   break;
+    }
+    _setResolution();
   }
-  return begin();
+  return _addressFound;
 }
 
 
