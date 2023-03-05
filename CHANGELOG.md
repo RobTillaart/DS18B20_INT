@@ -1,4 +1,4 @@
-# Change Log DistanceTable
+# Change Log DS18B20_INT
 
 All notable changes to this project will be documented in this file.
 
@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - move sources to src folder to comply with PlatformIO dependency system. 
 - make oneWire dependency explicit in library.properties
 - update readme.md
+- fix changelog.md
+
 
 ----
 
