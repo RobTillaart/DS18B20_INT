@@ -50,7 +50,8 @@ the asynchronous reading of the temperature by means of three core functions:
 - **bool begin(uint8_t retries = 3)** resets oneWire and set resolution default to 9 bit.  
 Returns true if address / device is found and all is OK. 
 There will be a number of retries to connect, default 3.
-- **bool isConnected()** Returns true if address / device is found.
+- **bool isConnected(uint8_t retries = 3)** Returns true if address / device is found.
+There will be a number of retries to connect, default 3.
 - **void requestTemperatures()** trigger temperature conversion.
 - **bool isConversionComplete()** check if conversion is complete.
 - **int16_t getTempC()** returns temperature in whole degrees only. -55..125  
@@ -64,16 +65,16 @@ The following functions are experimental since 0.2.0 and not tested a lot by me.
 They allow to use a higher resolution while not using floats. 
 Goal is to keep the footprint of the library small.
 
-- **bool setResolution(uint8_t bits = 9)** sets the internal resolution to 9, 10, 11 or 12 bits. 
+- **bool setResolution(uint8_t resolution = 9)** sets the internal resolution to 9, 10, 11 or 12 bits. 
 Other numbers will be mapped on 9. 
 This will affect the conversion time for a measurement.
 Internally it will call **begin()** to set the new resolution.
 Returns false if no address / device can be found.
-- **void getResolution()** returns the bits set, default 9.
+- **void getResolution()** returns the resolution set, default 9.
 Convenience function.
 - **getTempCentiC(void)** returns the measured temperature times 100. -5500..12500
 So 10.62°C will be returned as 1062.
-Note one might need to set the resolution.
+Note one might need to set the resolution to get more "decimals".
 
 
 ## Operation
@@ -152,9 +153,6 @@ and all people who contributed to that lib.
 #### Must
 
 - elaborate performance connected state.
-- document 85 and -127 better
-  - #define DEVICE_POWER_ON       85
-  - example reread?
 
 #### Should
 
@@ -166,6 +164,8 @@ and all people who contributed to that lib.
 
 #### Could
 
+- example 85 device power on (reread if 85).
+- #define DEVICE_POWER_ON       85
 - add rounding for **getTempC()**.
   - now it truncates, so it can be 0.5°C off.
   - add "0.5" to raw and truncate improves only for 10 bits and higher.
@@ -175,6 +175,4 @@ and all people who contributed to that lib.
 
 - unit tests
   - get it working is too time consuming.
-
-
 
