@@ -45,7 +45,7 @@ public:
   bool      isConversionComplete(void);
   bool      getAddress(uint8_t* buf);
 
-  bool      setResolution(uint8_t bits = 9);
+  bool      setResolution(uint8_t resolution = 9);
   uint8_t   getResolution();  //  returns cached value
 
   int16_t   getTempCentiC(void);
@@ -58,7 +58,7 @@ private:
 
   uint8_t       _resolution;
   int16_t       _readRaw();
-  bool          _setResolution();
+  void          _setResolution();
 };
 
 

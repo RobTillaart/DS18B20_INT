@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - fix #15 infinite loop
 - move sources to src folder to comply with PlatformIO dependency system. 
 - make oneWire dependency explicit in library.properties
+- refactor resolution handling
 - update readme.md
 - fix changelog.md
 
